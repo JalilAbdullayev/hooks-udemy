@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AddNewToDo from "./AddNewToDo";
 
 const ToDoList = () => {
     const [todos, setTodos] = useState([{
@@ -12,12 +13,12 @@ const ToDoList = () => {
         text: "Feed the dog"
     }]);
 
-    const addToDo = () => {
+    const addToDo = text => {
         setTodos([
             ...todos,
             {
                 id: Math.random(),
-                text: "Learn Hooks"
+                text
             }
         ]);
     }
@@ -33,9 +34,7 @@ const ToDoList = () => {
                     )
                 })}
             </ul>
-            <button onClick={addToDo}>
-                Add A To Do
-            </button>
+            <AddNewToDo addToDo={addToDo}/>
         </>
     );
 }
