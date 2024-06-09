@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddNewToDo from "./AddNewToDo";
 
 const ToDoList = () => {
@@ -13,6 +13,8 @@ const ToDoList = () => {
         text: "Feed the dog"
     }]);
 
+    const [count, setCount] = useState(0);
+
     const addToDo = text => {
         setTodos([
             ...todos,
@@ -22,6 +24,10 @@ const ToDoList = () => {
             }
         ]);
     }
+
+    useEffect(() => {
+        console.log("Mounted", todos);
+    }, []);
 
     return (
         <>
@@ -35,6 +41,9 @@ const ToDoList = () => {
                 })}
             </ul>
             <AddNewToDo addToDo={addToDo}/>
+            <button onClick={() => setCount(count + 1)}>
+                Score: {count}
+            </button>
         </>
     );
 }
